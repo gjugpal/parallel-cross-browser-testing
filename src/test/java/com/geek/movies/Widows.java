@@ -1,17 +1,18 @@
-package com.geek.framework;
+package com.geek.movies;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeTest;
+import com.geek.movies.browser.SupportedBrowser;
+import com.geek.movies.sut.IMDB;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class DefiningBrowser extends BaseTest {
+public class Widows extends BaseTest {
 
     /**
      * This particular test should only run using Google Chrome browser, therefore the test is defining the browser
      * to spin up
      */
     @Override
-    @BeforeTest
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         setBrowser(SupportedBrowser.CHROME);
         super.setup();
@@ -19,7 +20,6 @@ public class DefiningBrowser extends BaseTest {
 
     @Test
     public void chromeBrowserTest() {
-        WebDriver driver = getDriver();
-        driver.get("http://www.google.com");
+        new IMDB().navigateToAndScrapeData("https://www.imdb.com/title/tt4218572");
     }
 }

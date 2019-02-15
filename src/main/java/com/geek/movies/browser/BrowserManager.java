@@ -1,16 +1,16 @@
-package com.geek.framework;
+package com.geek.movies.browser;
 
 import org.openqa.selenium.WebDriver;
 
 import static org.junit.Assert.fail;
 
-public abstract class DriverGenerator {
+public abstract class BrowserManager {
 
     private static final ThreadLocal<WebDriver> THREAD_DRIVER = new ThreadLocal<WebDriver>();
-    private static final DriverFactory DRIVER_FACTORY = new DriverFactory();
+    private static final BrowserFactory DRIVER_FACTORY = new BrowserFactory();
     private SupportedBrowser browser = null;
 
-    public WebDriver getDriver() {
+    public static WebDriver getDriver() {
         return THREAD_DRIVER.get();
     }
 
@@ -24,7 +24,7 @@ public abstract class DriverGenerator {
             THREAD_DRIVER.set(driver);
 
         } catch (final Exception e) {
-            fail("driver generation problem encountered");
+            fail("driver generation problem encountered " + e);
         }
     }
 
