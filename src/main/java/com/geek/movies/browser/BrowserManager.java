@@ -7,20 +7,20 @@ import static org.junit.Assert.fail;
 public abstract class BrowserManager {
 
     private static final ThreadLocal<WebDriver> THREAD_DRIVER = new ThreadLocal<WebDriver>();
-    private static final BrowserFactory DRIVER_FACTORY = new BrowserFactory();
-    private SupportedBrowser browser = null;
+    private static final BrowserFactory BROWSER_FACTORY = new BrowserFactory();
+    private SupportedBrowsers browser = null;
 
-    public static WebDriver getDriver() {
+    public static WebDriver getBrowser() {
         return THREAD_DRIVER.get();
     }
 
-    public void setBrowser(SupportedBrowser browser){
+    public void setBrowser(SupportedBrowsers browser){
         this.browser = browser;
     }
 
     protected void setup() {
         try {
-            final WebDriver driver = browser == null ? DRIVER_FACTORY.buildDriver() : DRIVER_FACTORY.buildDriver(browser);
+            final WebDriver driver = browser == null ? BROWSER_FACTORY.buildBrowser() : BROWSER_FACTORY.buildBrowser(browser);
             THREAD_DRIVER.set(driver);
 
         } catch (final Exception e) {
@@ -29,7 +29,7 @@ public abstract class BrowserManager {
     }
 
     protected void tearDown() {
-        final WebDriver driver = getDriver();
+        final WebDriver driver = getBrowser();
 
         if (driver != null) {
             driver.quit();

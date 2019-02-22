@@ -43,6 +43,16 @@
 
     </dependencies>
 
+    <properties>
+        <property>
+            <name>usedefaultlisteners</name>
+            <value>false</value>
+        </property>
+        <property>
+            <name>listener</name>
+            <value>com.geek.movies.reporter.TestReportManager</value>
+        </property>
+    </properties>
 
     <build>
         <plugins>

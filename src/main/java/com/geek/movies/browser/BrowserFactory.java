@@ -9,30 +9,26 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class BrowserFactory {
 
-//    private ClassLoader classLoader = getClass().getClassLoader();
-
-    protected synchronized WebDriver buildDriver(SupportedBrowser browser) {
+    protected synchronized WebDriver buildBrowser(SupportedBrowsers browser) {
         return build(browser);
     }
 
-    protected synchronized WebDriver buildDriver() {
+    protected synchronized WebDriver buildBrowser() {
         String propertyVal = System.getProperty("BROWSER");
-        final SupportedBrowser browser =  Strings.isNullOrEmpty(propertyVal) ? SupportedBrowser.FIREFOX : SupportedBrowser.valueOf(propertyVal);
+        final SupportedBrowsers browser =  Strings.isNullOrEmpty(propertyVal) ? SupportedBrowsers.FIREFOX : SupportedBrowsers.valueOf(propertyVal);
         return build(browser);
     }
 
-    private synchronized WebDriver build(SupportedBrowser browser) {
+    private synchronized WebDriver build(SupportedBrowsers browser) {
         WebDriver driver = null;
 
         switch (browser) {
             case FIREFOX:
-//                String geckoDriverPath  = classLoader.getResource("geckodriver").getPath();
-                System.setProperty("webdriver.gecko.driver", "/Users/gju01/Documents/github/factory-pattern-cross-browser-testing/geckodriver");
+                System.setProperty("webdriver.gecko.driver", "drivers/geckodriver");
                 driver = new FirefoxDriver();
                 break;
             case CHROME:
-//                String chromeDriverPath  = classLoader.getResource("chromedriver").getPath();
-                System.setProperty("webdriver.chrome.driver", "/Users/gju01/Documents/github/factory-pattern-cross-browser-testing/chromedriver");
+                System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
                 driver = new ChromeDriver();
                 break;
             case INTERNET_EXPLORER:

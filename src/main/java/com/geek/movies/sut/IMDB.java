@@ -14,7 +14,7 @@ public class IMDB {
     private ExtentTest testReport;
 
     public IMDB() {
-        driver = BrowserManager.getDriver();
+        driver = BrowserManager.getBrowser();
         testReport = TestReportManager.get();
     }
 

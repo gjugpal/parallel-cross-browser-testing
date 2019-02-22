@@ -1,6 +1,6 @@
 package com.geek.movies;
 
-import com.geek.movies.browser.SupportedBrowser;
+import com.geek.movies.browser.SupportedBrowsers;
 import com.geek.movies.sut.IMDB;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -14,12 +14,12 @@ public class Widows extends BaseTest {
     @Override
     @BeforeClass(alwaysRun = true)
     public void setup() {
-        setBrowser(SupportedBrowser.CHROME);
+        setBrowser(SupportedBrowsers.CHROME);
         super.setup();
     }
 
-    @Test
-    public void chromeBrowserTest() {
+    @Test(priority = 1)
+    public void chromeBrowserTest() throws InterruptedException {
         new IMDB().navigateToAndScrapeData("https://www.imdb.com/title/tt4218572");
     }
 }

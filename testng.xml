@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Showcase" verbose="3" parallel="methods" thread-count="4">
+
+    <listeners>
+        <listener class-name="com.geek.movies.reporter.TestReporter" />
+    </listeners>
     <test name="Showcase Multi-Browser Testing">
 
-        <packages>
-            <package name="com.geek.movies.*" />
-        </packages>
+
+
+        <classes>
+            <class name="com.geek.movies.BlackPanther" />
+            <class name="com.geek.movies.QuietPlace" />
+            <class name="com.geek.movies.TheDarkKnight" />
+            <class name="com.geek.movies.Widows" />
+        </classes>
+
 
     </test>
 
